@@ -1,7 +1,7 @@
 %nav.bg-white.px-2.sm:px-4.fixed.w-full.z-20.top-0.left-0.border-b.border-gray-200{:class => "py-2.5"}
   .container.flex.flex-wrap.justify-between.items-center.mx-auto
     %a.flex.items-center{:href => "https://railsmojo.org/"}
-      %span.self-center.text-xl.font-semibold.whitespace-nowrap Simple SSO
+      %span.self-center.text-xl.font-semibold.whitespace-nowrap Simple SSO Provider
     .flex.md:order-2
       = button_to "Sign out", destroy_user_session_path, method: :delete, class: 'text-base'
     #navbar-sticky.hidden.justify-between.items-center.w-full.md:flex.md:w-auto.md:order-1
