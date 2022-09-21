@@ -1,2 +1,20 @@
-%h1 Dashboard#index
-%p Find me in app/views/dashboard/index.html.haml
+.overflow-x-auto.relative
+  .py-6
+    %h1.text-lg.font-medium Listing registered users
+  %table.w-full.text-sm.text-left.text-gray-500
+    %thead.text-xs.text-gray-700.uppercase.bg-slate-50.rounded
+      %tr
+        %th.py-3.px-6 #
+        %th.py-3.px-6 Email
+        %th.py-3.px-6 Registered at
+        %th.py-3.px-6 Updated at
+
+    %tbody
+      - @users.each do |user|
+        %tr.bg-white.border-b
+          %td.py-4.px-6= user.id
+          %td.py-4.px-6= user.email
+          %td.py-4.px-6= user.created_at
+          %td.py-4.px-6= user.updated_at
+
+

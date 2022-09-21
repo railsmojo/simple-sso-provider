@@ -1,25 +1,28 @@
-%h1 Listing clients
+.overflow-x-auto.relative
+  .flex.justify-between.py-6
+    %h1.text-lg.font-medium Listing OAuth clients
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th App
-      %th App secret
-      %th
-      %th
-      %th
+    -# %div
+    = link_to 'New Client', new_client_path, class: 'primary-button'
 
-  %tbody
-    - @clients.each do |client|
+  %table.w-full.text-sm.text-left.text-gray-500
+    %thead.text-xs.text-gray-700.uppercase.bg-slate-50.rounded
       %tr
-        %td= client.name
-        %td= client.app_id
-        %td= client.app_secret
-        %td= link_to 'Show', client
-        %td= link_to 'Edit', edit_client_path(client)
-        %td= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' }
+        %th.py-3.px-6 #
+        %th.py-3.px-6 Name
+        %th.py-3.px-6 App
+        %th.py-3.px-6 App secret
+        %th.py-3.px-6
+        %th.py-3.px-6
 
-%br
+    %tbody
+      - @clients.each do |client|
+        %tr.bg-white.border-b
+          %td.py-4.px-6= client.id
+          %td.py-4.px-6= client.name
+          %td.py-4.px-6= client.app_id
+          %td.py-4.px-6= client.app_secret
+          %td.py-4.px-6= link_to 'Edit', edit_client_path(client)
+          %td.py-4.px-6= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' }
 
-= link_to 'New Client', new_client_path
+

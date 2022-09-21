@@ -6,14 +6,8 @@
         - @client.errors.full_messages.each do |message|
           %li= message
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :app_id
-    = f.text_field :app_id
-  .field
-    = f.label :app_secret
-    = f.text_field :app_secret
+  .field.mb-4
+    = f.label :name, class: "block mb-2 text-sm font-medium text-gray-900"
+    = f.text_field :name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
   .actions
-    = f.submit 'Save'
+    = f.submit 'Submit', class: 'primary-button'

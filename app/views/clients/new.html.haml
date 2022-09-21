@@ -1,5 +1,7 @@
-%h1 New client
+.overflow-x-auto.relative
+  .flex.justify-between.py-6
+    %h1.text-lg.font-medium New client
+  .border.rounded-md.px-5.py-5.mb-4{class: "w-2/5"}
+    = render 'form'
 
-= render 'form'
-
-= link_to 'Back', clients_path
+  = link_to 'Back', clients_path, class: "text-slate-500 text-sm"
