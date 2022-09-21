@@ -1,0 +1,25 @@
+%h1 Listing clients
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th App
+      %th App secret
+      %th
+      %th
+      %th
+
+  %tbody
+    - @clients.each do |client|
+      %tr
+        %td= client.name
+        %td= client.app_id
+        %td= client.app_secret
+        %td= link_to 'Show', client
+        %td= link_to 'Edit', edit_client_path(client)
+        %td= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Client', new_client_path
