@@ -28,14 +28,16 @@ class AuthController < ApplicationController
 
   # POST
   def access_token
-    application = Client.authenticate(params[:client_id], params[:client_secret])
+    access_grant = AccessGrant.find_by_code(params[:code])
+    application = access_grant.client
+    # application = Client.authenticate(params[:client_id], params[:client_secret])
 
     if application.nil?
       render :json => {:error => "Could not find application"}
       return
     end
 
-    access_grant = AccessGrant.authenticate(params[:code], application.id)
+    # access_grant = AccessGrant.authenticate(params[:code], application.id)
     if access_grant.nil?
       render :json => {:error => "Could not authenticate access code"}
       return
@@ -53,10 +55,7 @@ class AuthController < ApplicationController
       id: current_user.id.to_s,
       info: {
          email: current_user.email,
-      },
-      extra: {
-        first_name: 'Anonymous',
-        last_name: 'User'
+         name: current_user.name
       }
     }
 
@@ -73,7 +72,7 @@ class AuthController < ApplicationController
 
   def authenticate_user_from_token!
     if params[:oauth_token]
-      jwt_token = JsonWebToken.decode(params[:oauth_token])
+        jwt_token = JsonWebToken.decode(params[:oauth_token])
       if jwt_token
         access_grant = AccessGrant.where(access_token: jwt_token[:access_token]).take
         if access_grant.user
